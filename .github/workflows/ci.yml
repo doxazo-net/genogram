@@ -33,6 +33,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Check native deps are lockfile-complete for Linux
+        run: npm run check:native
+
       - name: Type check
         run: npx tsc -b --noEmit
 
