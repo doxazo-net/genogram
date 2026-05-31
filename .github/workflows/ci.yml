@@ -33,7 +33,7 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Check native deps are lockfile-complete for Linux
+      - name: Check lockfile is complete (all optional platform deps present)
         run: npm run check:native
 
       - name: Type check
