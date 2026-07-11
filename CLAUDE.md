@@ -1,5 +1,14 @@
 # CLAUDE.md
 
+## >> ON SESSION START / RESUME: read SESSION-STATE.md FIRST (if present) <<
+
+`SESSION-STATE.md` (repo root; gitignored, machine-local) is the orchestrate session
+checkpoint - read it before doing anything when asked to resume / pick up work. It holds
+only non-derivable intent + pointers (status banner, next actions); reboot-durable
+derivables (in-flight PRs via `gh pr list`, worktrees via `git worktree list`) are
+reconstructed on demand, not mirrored. Absent on a fresh checkout; created on the first
+orchestrate session.
+
 ## Project Overview
 
 Genogram is a modern, mobile-friendly web app for creating and editing clinical genograms using McGoldrick-Gerson standard notation. Built with React + TypeScript + Vite, backed by Supabase.
