@@ -7,12 +7,12 @@ name = "lint"
 run = "npm run lint"
 
 [[prep_pr.steps]]
-name = "typecheck"
-run = "npx tsc -b --noEmit"
-
-[[prep_pr.steps]]
 name = "check-native-deps"
 run = "npm run check:native"
+
+[[prep_pr.steps]]
+name = "typecheck"
+run = "npx tsc -b --noEmit"
 
 [[prep_pr.steps]]
 name = "build"
