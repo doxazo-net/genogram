@@ -11,6 +11,29 @@ updates:
       - dependencies
       - javascript
     open-pull-requests-limit: 10
+    groups:
+      # typescript-eslint declares a peer range on typescript. Bumping either one
+      # alone gives npm an unsatisfiable tree (ERESOLVE) and the PR can never go
+      # green, however many times it is rebased -- the open typescript 7 bump is
+      # stuck on exactly that. They have to move as one set.
+      eslint-ecosystem:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "@eslint/*"
+          - "typescript"
+          - "typescript-eslint"
+      react-ecosystem:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "react-router-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      vite-ecosystem:
+        patterns:
+          - "vite"
+          - "@vitejs/*"
 
   - package-ecosystem: github-actions
     directory: /
@@ -23,6 +46,20 @@ updates:
       - dependencies
       - ci
     open-pull-requests-limit: 5
+    groups:
+      # github/codeql-action/* sub-actions MUST bump together. init writes a config
+      # file that analyze reads, and analyze rejects a config whose version differs
+      # from its own. Separate PRs per sub-action leave main red from the moment the
+      # first merges until the second does. media-reaper hit this; genogram is next
+      # in line on the following CodeQL release.
+      codeql-action:
+        patterns:
+          - "github/codeql-action*"
+      actions-all:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "github/codeql-action*"
 
   - package-ecosystem: docker
     directory: /
