@@ -34,6 +34,13 @@ updates:
         patterns:
           - "vite"
           - "@vitejs/*"
+    ignore:
+      # typescript-eslint peers typescript ">=4.8.4 <6.1.0" at every published
+      # version, alphas included, so TypeScript 7 cannot resolve alongside it.
+      # Dependabot re-proposes the bump weekly and it can never go green. Drop
+      # this ignore once typescript-eslint ships TS 7 support.
+      - dependency-name: "typescript"
+        versions: [">=6.1.0"]
 
   - package-ecosystem: github-actions
     directory: /
