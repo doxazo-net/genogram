@@ -27,3 +27,6 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Orchestrate session checkpoint (machine-local, transient; never committed)
+/SESSION-STATE.md
